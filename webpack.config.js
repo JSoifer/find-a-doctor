@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const Handlebars = require('handlebars');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -21,7 +22,7 @@ module.exports = {
       template: './src/index.html',
       inject: 'body'
     }),
-    new Dotenv()
+    new Dotenv(),
   ],
   module: {
     rules: [
@@ -53,7 +54,10 @@ module.exports = {
              'sass-loader'
          ]
         },
-
+      {
+        test: /\.handlebars$/,
+        loader: "handlebars-loader"
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
