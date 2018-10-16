@@ -5,16 +5,17 @@ import FindDoctor from '../src/FindDoctor.js';
 
 $(document).ready(function() {
   $('#getList').click(function() {
-    // let concern = $('#concern').val();
-    // $('#concern').val("");
+    const concern = $('#concern').val();
+    $('#concern').val("");
 
-    let findDoctor = new FindDoctor();
-    let promise = findDoctor.findDoctorByConcern();
+    const findDoctor = new FindDoctor();
+    const promise = findDoctor.findDoctorByConcern(concern);
     promise.then(function(response) {
-      let body = JSON.parse(response);
+      const body = JSON.parse(response);
       console.log(body);
-      $('.showResults').text(`Please see the following list of doctors who match your criteria: ${body}`);
 
+
+      $('.showResults').text(`Please see the following list of doctors who match your criteria: ${body.data}`);
 
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
