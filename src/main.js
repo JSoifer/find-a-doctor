@@ -4,6 +4,14 @@ import 'bootstrap';
 import FindDoctor from '../src/FindDoctor.js';
 
 $(document).ready(function() {
+  function createDoctorView(data) {
+    let view = "Please see the following list of doctors who match your criteria:  ";
+
+    data.forEach(function(doctor) {
+      view += doctor.profile.first_name + ' ' + doctor.profile.last_name + ', '
+    });
+    return view;
+  }
   $('#getList').click(function() {
     const concern = $('#concern').val();
     $('#concern').val("");
