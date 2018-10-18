@@ -12,24 +12,27 @@ $(document).ready(function() {
     const promise = findDoctor.findDoctorByConcern(concern);
     promise.then(function(response) {
       const body = JSON.parse(response);
-      // console.log(body);
+      console.log(body);
       for(let i = 0; i <= body.data.length; i++) {
         const doctors = (body.data[i]);
-        const doctorArray = [];
-
-        console.log(doctorArray);
-
-        $('.showResults').text(`Please see the following list of doctors who match your criteria: ${doctors}`);
+        console.log(doctors);
+        // function getDoctors(body) {
+        //   return body;
+        // }
       }
-
-
-
-
-
-
     }, function(error) {
-        $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
     });
+    promise.then(function(doctors) {
+      $('.showResults').text(`Please see the following list of doctors who match your criteria: ${doctors}`);
+
+    });
+
+
+
+
+
+
 
   });
 });
