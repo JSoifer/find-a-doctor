@@ -11,10 +11,12 @@ $(document).ready(function() {
     const findDoctor = new FindDoctor();
     const promise = findDoctor.findDoctorByConcern(concern);
     promise.then(function(response) {
-    return response;
+    const body = JSON.parse(response);
+    return body;
 
   }).then(function(body) {
-      $('.showResults').text(`Please see the following list of doctors who match your criteria: ${body}`);
+    const doctorView = createDoctorView(body.data);
+      $('.showResults').text(doctorView);
 
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);

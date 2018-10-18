@@ -14,7 +14,15 @@ export default class FindDoctor {
       request.open("GET", url, true);
       request.send();
     });
+    function createDoctorView(data) {
+      let view = "Please see the following list of doctors who match your criteria:  ";
 
+      data.forEach(function(doctor) {
+        view += doctor.profile.first_name + ' ' + doctor.profile.last_name + ', '
+      });
+      return view;
+
+    }
 
 
 
