@@ -14,15 +14,20 @@ $(document).ready(function() {
     });
     return view;
   }
+
   function createDoctorView(data) {
     let view = "Please see the following list of doctors who match your criteria:  ";
 
     data.forEach(function(doctor) {
-      view += doctor.profile.first_name + ' ' + doctor.profile.last_name + ', ';
+      view += '<div>'
+      view += '<h3>'
+      view += doctor.profile.first_name + ' ' + doctor.profile.last_name;
+      view += '</h3>'
 
       const locationView = location(doctor.practices);
 
       view += locationView;
+      view += '</div>'
     });
     return view;
   }
@@ -39,7 +44,7 @@ $(document).ready(function() {
     // console.log(body);
   }).then(function(body) {
     const doctorView = createDoctorView(body.data);
-      $('.showResults').text(doctorView);
+      $('.showResults').html(doctorView);
 
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);

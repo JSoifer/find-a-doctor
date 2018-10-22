@@ -1,4 +1,5 @@
 export default class FindDoctor {
+
   findDoctorByConcern(concern) {
     return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
